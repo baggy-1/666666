@@ -19,10 +19,23 @@ const DetailPosts = ({ post }: Props) => {
 
   return (
     <>
-      <div>
-        <div>{post.meta.title}</div>
+      <div
+        style={{
+          minHeight: "calc(100vh - 4rem - 3rem)",
+          height: "100%",
+          color: "#c9d1d9",
+          backgroundColor: "#0d1117",
+          width: "100%",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+        }}
+      >
         <section
           className="markdown-body"
+          style={{
+            maxWidth: "100%",
+          }}
           dangerouslySetInnerHTML={{ __html: post.content }}
         ></section>
       </div>

@@ -3,7 +3,7 @@ id: 2
 categories:
   - 개발
 date: "2022-10-09"
-description: 머리 아프다~
+description: 묻지마라
 tags:
   - 개발
   - 고민
@@ -28,7 +28,7 @@ const getDev = () => {
 ```python
 // 개발.py
 def 얻다개발():
-  print("개발조아?");
+  print("개발👍");
 ```
 
 ```css
