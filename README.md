@@ -2,7 +2,7 @@
 
 > .md 파일을 읽을 수 있는 블로그를 만듭니다.
 
-[:link: 블로그](666666-liard.vercel.app)
+[:link: 블로그](https://666666-liard.vercel.app)
 
 ## 폴더 구조 및 라우팅
 
