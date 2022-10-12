@@ -41,15 +41,16 @@ const getAllPostMetaData = () => {
   return postMetaData;
 };
 
-const getPost = async (path: string) => {
+const getPost = (path: string) => {
   const post = matter.read(`_posts/${path}.md`);
   const { content: postContent, data: meta } = post;
-  const parseContent = await remark()
+  const parseContent = remark()
     .use(remarkHtml, { sanitize: false })
     .use(remarkGemoji)
-    .processSync(postContent);
+    .processSync(postContent)
+    .value.toString();
 
-  const content = parseContent.value.toString();
+  const content = parseContent;
 
   return {
     meta,

@@ -1,21 +1,31 @@
 import { GetStaticProps } from "next";
 import { useEffect } from "react";
-import { MetaData } from "types/post";
+import { MetaData, Post } from "types/post";
 import { getAllPostPath, getPost } from "utils/post";
 import hljs from "highlight.js";
+import useSWR, { SWRConfig, unstable_serialize } from "swr";
+import { useRouter } from "next/router";
 
-interface Props {
-  post: {
-    meta: MetaData;
-    content: string;
+interface PageProps {
+  fallback: {
+    [key: string]: {
+      meta: MetaData;
+      content: string;
+    };
   };
 }
 
-const DetailPosts = ({ post }: Props) => {
+const DetailPosts = () => {
+  const router = useRouter();
+  const { id } = router.query;
+  const { data: post } = useSWR<Post>(["post", id]);
+
   useEffect(() => {
     hljs.highlightAll();
     hljs.configure({ ignoreUnescapedHTML: true });
   });
+
+  if (!post) return <div>포스트 없음</div>;
 
   return (
     <>
@@ -51,26 +61,33 @@ export const getStaticPaths = () => {
   };
 };
 
-export const getStaticProps: GetStaticProps = async (context) => {
-  const postNull = {
-    props: {
-      post: null,
-    },
-  };
+export const getStaticProps: GetStaticProps = (context) => {
+  const id = context?.params?.id;
 
-  const { params } = context;
-  if (!params) return postNull;
+  if (!id || typeof id !== "string")
+    return {
+      props: {
+        fallback: {},
+      },
+    };
 
-  const { id } = params;
-  if (typeof id !== "string") return postNull;
-
-  const post = await getPost(id);
+  const post = getPost(id);
 
   return {
     props: {
-      post,
+      fallback: {
+        [unstable_serialize(["post", id])]: post,
+      },
     },
   };
 };
 
-export default DetailPosts;
+const DetailPostsPage = ({ fallback }: PageProps) => {
+  return (
+    <SWRConfig value={{ fallback }}>
+      <DetailPosts />
+    </SWRConfig>
+  );
+};
+
+export default DetailPostsPage;

@@ -1,5 +1,6 @@
 import type { GetStaticProps, NextPage } from "next";
 import Link from "next/link";
+import useSWR, { SWRConfig, unstable_serialize } from "swr";
 import { MetaData } from "types/post";
 import { getAllPostMetaData } from "utils/post";
 
@@ -7,11 +8,16 @@ interface MetaDataPath extends MetaData {
   path: string;
 }
 
-interface Props {
-  sortAllPostMetaData: MetaDataPath[];
+interface PageProps {
+  fallback: {
+    [key: string]: MetaDataPath[];
+  };
 }
 
-const Home: NextPage<Props> = ({ sortAllPostMetaData }) => {
+const Home: NextPage = () => {
+  const { data: postsMetaData } = useSWR<MetaDataPath[]>("/api/posts");
+  if (!postsMetaData) return <div>post 없음</div>;
+
   return (
     <>
       <div
@@ -31,7 +37,7 @@ const Home: NextPage<Props> = ({ sortAllPostMetaData }) => {
             marginTop: "2rem",
           }}
         >
-          {sortAllPostMetaData.map((post) => (
+          {postsMetaData.map((post) => (
             <div
               key={post.id}
               style={{
@@ -75,8 +81,20 @@ export const getStaticProps: GetStaticProps = () => {
     .slice()
     .sort((a, b) => b.id - a.id);
   return {
-    props: { sortAllPostMetaData },
+    props: {
+      fallback: {
+        "/api/posts": sortAllPostMetaData,
+      },
+    },
   };
 };
 
-export default Home;
+const HomePage = ({ fallback }: PageProps) => {
+  return (
+    <SWRConfig value={{ fallback }}>
+      <Home />
+    </SWRConfig>
+  );
+};
+
+export default HomePage;

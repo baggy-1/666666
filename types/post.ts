@@ -7,4 +7,9 @@ interface MetaData {
   title: string;
 }
 
-export type { MetaData };
+interface Post {
+  meta: MetaData;
+  content: string;
+}
+
+export type { MetaData, Post };
