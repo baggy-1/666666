@@ -1,6 +1,6 @@
 ---
-id: 4
 categories:
+  - dev
 date: "2022-10-10"
 description: 이 프로젝트를 알려드려요
 tags:

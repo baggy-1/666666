@@ -1,5 +1,4 @@
 interface MetaData {
-  id: number;
   categories: string[];
   date: string;
   description: string;

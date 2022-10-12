@@ -1,4 +1,4 @@
-import "styles/reset.css";
+import "styles/tw-base.css";
 import "styles/globals.css";
 import "github-markdown-css/github-markdown-dark.css";
 import "highlight.js/styles/github-dark.css";

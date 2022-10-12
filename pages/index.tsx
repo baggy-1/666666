@@ -1,8 +1,9 @@
 import type { GetStaticProps, NextPage } from "next";
 import Link from "next/link";
-import useSWR, { SWRConfig, unstable_serialize } from "swr";
+import useSWR, { SWRConfig } from "swr";
 import { MetaData } from "types/post";
 import { getAllPostMetaData } from "utils/post";
+import { css } from "@emotion/react";
 
 interface MetaDataPath extends MetaData {
   path: string;
@@ -20,51 +21,24 @@ const Home: NextPage = () => {
 
   return (
     <>
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          height: "100%",
-          minHeight: "calc(100vh - 4rem - 3rem)",
-          width: "100%",
-          color: "#c9d1d9",
-          backgroundColor: "#0d1117",
-        }}
-      >
-        <div
-          style={{
-            marginTop: "2rem",
-          }}
-        >
+      <div css={wrapper}>
+        <div css={postListBox}>
           {postsMetaData.map((post) => (
-            <div
-              key={post.id}
-              style={{
-                marginBottom: "1rem",
-              }}
-            >
+            <div key={post.path} css={postBox}>
               <Link href={`/${post.path}`}>
                 <a>
-                  <div>
-                    <h1
-                      style={{
-                        fontSize: "2rem",
-                        fontWeight: "bold",
-                      }}
-                    >
-                      {post.title}
-                    </h1>
-                    <h2
-                      style={{
-                        fontSize: "1.2rem",
-                        fontWeight: "500",
-                      }}
-                    >
-                      {post.description}
-                    </h2>
+                  <h1 css={h1}>{post.title}</h1>
+                  <h2 css={h2}>{post.description}</h2>
+                  <div css={footerBox}>
+                    <h3>{post.date}</h3>
+                    <div css={tagBox}>
+                      {post.tags.map((tag) => (
+                        <div key={tag} css={Stag}>
+                          {tag}
+                        </div>
+                      ))}
+                    </div>
                   </div>
-                  <h3>{post.date}</h3>
                 </a>
               </Link>
             </div>
@@ -77,13 +51,11 @@ const Home: NextPage = () => {
 
 export const getStaticProps: GetStaticProps = () => {
   const allPostMetaData = getAllPostMetaData();
-  const sortAllPostMetaData = allPostMetaData
-    .slice()
-    .sort((a, b) => b.id - a.id);
+
   return {
     props: {
       fallback: {
-        "/api/posts": sortAllPostMetaData,
+        "/api/posts": allPostMetaData,
       },
     },
   };
@@ -98,3 +70,56 @@ const HomePage = ({ fallback }: PageProps) => {
 };
 
 export default HomePage;
+
+const footerBox = css({
+  display: "flex",
+});
+
+const Stag = css({
+  backgroundColor: "#c9d1d9",
+  color: "#0d1117",
+  padding: "0.25rem 0.5rem",
+  borderRadius: "0.25rem",
+  fontSize: "0.75rem",
+  lineHeight: "1",
+  marginRight: "0.5rem",
+  width: "fit-content",
+  height: "fit-content",
+  fontWeight: "700",
+});
+
+const tagBox = css({
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  marginLeft: "2rem",
+});
+
+const h2 = css({
+  fontSize: "1.1rem",
+  fontWeight: "500",
+});
+
+const h1 = css({
+  fontSize: "2rem",
+  fontWeight: "bold",
+});
+
+const postBox = css({
+  marginBottom: "2rem",
+});
+
+const postListBox = css({
+  marginTop: "2rem",
+});
+
+const wrapper = css({
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  height: "100%",
+  minHeight: "calc(100vh - 4rem - 3rem)",
+  width: "100%",
+  color: "#c9d1d9",
+  backgroundColor: "#0d1117",
+});

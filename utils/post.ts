@@ -4,6 +4,8 @@ import { remark } from "remark";
 import remarkHtml from "remark-html";
 import remarkGemoji from "remark-gemoji";
 import { MetaData } from "types/post";
+import remarkHighlightjs from "remark-highlight.js";
+import remarkGfm from "remark-gfm";
 
 const replaceExtension = (path: string, extension: string) => {
   const regExp = new RegExp(`\.${extension}$`);
@@ -38,7 +40,15 @@ const getAllPostMetaData = () => {
     };
   });
 
-  return postMetaData;
+  const sortPostMetaData = postMetaData
+    .slice()
+    .sort(({ date: a }, { date: b }) => {
+      if (a < b) return 1;
+      if (a > b) return -1;
+      return 0;
+    });
+
+  return sortPostMetaData;
 };
 
 const getPost = (path: string) => {
@@ -46,15 +56,15 @@ const getPost = (path: string) => {
   const { content: postContent, data: meta } = post;
   const parseContent = remark()
     .use(remarkHtml, { sanitize: false })
+    .use(remarkGfm)
+    .use(remarkHighlightjs)
     .use(remarkGemoji)
     .processSync(postContent)
     .value.toString();
 
-  const content = parseContent;
-
   return {
     meta,
-    content,
+    content: parseContent,
   };
 };
 

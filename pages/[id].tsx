@@ -1,8 +1,6 @@
 import { GetStaticProps } from "next";
-import { useEffect } from "react";
 import { MetaData, Post } from "types/post";
 import { getAllPostPath, getPost } from "utils/post";
-import hljs from "highlight.js";
 import useSWR, { SWRConfig, unstable_serialize } from "swr";
 import { useRouter } from "next/router";
 
@@ -19,11 +17,6 @@ const DetailPosts = () => {
   const router = useRouter();
   const { id } = router.query;
   const { data: post } = useSWR<Post>(["post", id]);
-
-  useEffect(() => {
-    hljs.highlightAll();
-    hljs.configure({ ignoreUnescapedHTML: true });
-  });
 
   if (!post) return <div>포스트 없음</div>;
 

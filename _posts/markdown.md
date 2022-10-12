@@ -1,13 +1,13 @@
 ---
-id: 3
 categories:
+  - etc
 date: "2022-10-10"
 description: 마크다운 사용법을 정리해봐요
 tags:
   - markdown
   - 마크다운
-  - md
-title: 마크다운 정리
+  - .md
+title: 마크다운 키워드
 ---
 
 Heading
