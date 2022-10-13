@@ -1,7 +1,7 @@
 ---
 categories:
   - dev
-date: "2022-10-13"
+date: "2022-10-12"
 description: 매번 헷갈리는 emotion 세팅을 정리해봐요
 tags:
   - emotion
@@ -62,7 +62,7 @@ module.exports = {
 }
 ```
 
-## `tsconfig.json` 설정
+## <del>`tsconfig.json` 설정<del>
 
 > [emotion/typescript](https://emotion.sh/docs/typescript)  
 > [typescript/jsx](https://www.typescriptlang.org/ko/docs/handbook/jsx.html)
@@ -74,10 +74,12 @@ module.exports = {
   "compilerOptions": {
     //...
     // emotion doc에서는 "jsx": "react-jsx"를 사용했는데,
-    // "preserve"로 사용해도 오류없이 돌아가요
+    // "preserve"로 사용해도 괜찮음
+    // `jsxImportSource`도 굳이 설정 할 필요 없다
     // 관련 doc
     // emotion: https://emotion.sh/docs/typescript
     // ts: https://www.typescriptlang.org/ko/docs/handbook/jsx.html
+    // next.js: https://nextjs.org/docs/messages/react-hydration-error
     "jsx": "preserve",
     "jsxImportSource": "@emotion/react"
   }

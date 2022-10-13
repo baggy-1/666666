@@ -4,7 +4,7 @@ import { MetaDataPath } from "types/post";
 import PostBox from "components/pages/home/PostBox";
 
 const PostListView = () => {
-  const { data: postsMetaData } = useSWR<MetaDataPath[]>(["post", "all"]);
+  const { data: postsMetaData } = useSWR<MetaDataPath[]>("post");
 
   if (!postsMetaData) return <div>Sorry, No Posts</div>;
 
@@ -23,6 +23,7 @@ export default PostListView;
 
 const postListBox = css({
   marginTop: "2rem",
+  maxWidth: "50rem",
 });
 
 const wrapper = css({

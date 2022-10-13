@@ -38,4 +38,7 @@ const wrapper = css({
 const section = css({
   maxWidth: "50rem",
   width: "100%",
+  "& ol, ul": {
+    listStyle: "unset",
+  },
 });

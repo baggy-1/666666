@@ -24,7 +24,7 @@ export const getStaticProps: GetStaticProps = () => {
   return {
     props: {
       fallback: {
-        [unstable_serialize(["post", "all"])]: allPostMetaData,
+        post: allPostMetaData,
       },
     },
   };
