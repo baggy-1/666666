@@ -6,9 +6,13 @@ interface MetaData {
   title: string;
 }
 
+interface MetaDataPath extends MetaData {
+  path: string;
+}
+
 interface Post {
   meta: MetaData;
   content: string;
 }
 
-export type { MetaData, Post };
+export type { MetaData, MetaDataPath, Post };

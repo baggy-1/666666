@@ -22,7 +22,8 @@ npm install --save @emotion/react
 
 ## `next.config.js` 설정
 
-> [next.js/compiler](https://nextjs.org/docs/advanced-features/compiler#emotion)
+> [next.js/compiler](https://nextjs.org/docs/advanced-features/compiler#emotion)  
+> [tistory/nuhends](https://nuhends.tistory.com/124)
 
 ```js
 // next.config.js

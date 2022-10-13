@@ -1,8 +1,8 @@
 import { GetStaticProps } from "next";
-import { MetaData, Post } from "types/post";
+import { MetaData } from "types/post";
 import { getAllPostPath, getPost } from "utils/post";
-import useSWR, { SWRConfig, unstable_serialize } from "swr";
-import { useRouter } from "next/router";
+import { SWRConfig, unstable_serialize } from "swr";
+import PostView from "components/pages/postDetail/PostView";
 
 interface PageProps {
   fallback: {
@@ -14,34 +14,9 @@ interface PageProps {
 }
 
 const DetailPosts = () => {
-  const router = useRouter();
-  const { id } = router.query;
-  const { data: post } = useSWR<Post>(["post", id]);
-
-  if (!post) return <div>포스트 없음</div>;
-
   return (
     <>
-      <div
-        style={{
-          minHeight: "calc(100vh - 4rem - 3rem)",
-          height: "100%",
-          color: "#c9d1d9",
-          backgroundColor: "#0d1117",
-          width: "100%",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-        }}
-      >
-        <section
-          className="markdown-body"
-          style={{
-            maxWidth: "100%",
-          }}
-          dangerouslySetInnerHTML={{ __html: post.content }}
-        ></section>
-      </div>
+      <PostView />
     </>
   );
 };
