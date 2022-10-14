@@ -6,15 +6,7 @@ const Footer = () => {
   return (
     <>
       <footer css={footer}>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            height: "100%",
-            cursor: "pointer",
-          }}
-        >
+        <div css={wrapper}>
           <Link href={`https://github.com/chigomuh/666666`}>
             <a>
               <Image
@@ -32,6 +24,14 @@ const Footer = () => {
 };
 
 export default Footer;
+
+const wrapper = css({
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  height: "100%",
+  cursor: "pointer",
+});
 
 const footer = css({
   display: "flex",

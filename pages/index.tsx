@@ -1,5 +1,5 @@
 import type { GetStaticProps, NextPage } from "next";
-import { SWRConfig, unstable_serialize } from "swr";
+import { SWRConfig } from "swr";
 import { MetaDataPath } from "types/post";
 import { getAllPostMetaData } from "utils/post";
 import PostListView from "components/pages/home/PostListView";

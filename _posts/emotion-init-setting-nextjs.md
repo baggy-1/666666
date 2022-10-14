@@ -62,7 +62,7 @@ module.exports = {
 }
 ```
 
-## <del>`tsconfig.json` 설정<del>
+## `tsconfig.json` 설정
 
 > [emotion/typescript](https://emotion.sh/docs/typescript)  
 > [typescript/jsx](https://www.typescriptlang.org/ko/docs/handbook/jsx.html)
@@ -75,16 +75,25 @@ module.exports = {
     //...
     // emotion doc에서는 "jsx": "react-jsx"를 사용했는데,
     // "preserve"로 사용해도 괜찮음
-    // `jsxImportSource`도 굳이 설정 할 필요 없다
     // 관련 doc
     // emotion: https://emotion.sh/docs/typescript
     // ts: https://www.typescriptlang.org/ko/docs/handbook/jsx.html
     // next.js: https://nextjs.org/docs/messages/react-hydration-error
     "jsx": "preserve",
-    "jsxImportSource": "@emotion/react"
+    "jsxImportSource": "@emotion/react" // 해당 설정을 하지 않으면 빌드 시 에러가 발생한다
   }
   //...
 }
+```
+
+`jsxImportSource` 미 설정 시
+
+```bash
+# Failed to compile.
+
+Type error: Type '{ children: Element; key: string; css: SerializedStyles; }' is not assignable to type 'DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>'.
+
+Property 'css' does not exist on type 'DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>'.
 ```
 
 #### 참고 tsconfig.json `jsx`

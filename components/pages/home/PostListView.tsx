@@ -35,4 +35,5 @@ const wrapper = css({
   width: "100%",
   color: "#c9d1d9",
   backgroundColor: "#0d1117",
+  paddingTop: "6rem",
 });

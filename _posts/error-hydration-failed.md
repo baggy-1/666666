@@ -44,3 +44,7 @@ See more info here: https://nextjs.org/docs/messages/react-hydration-error
 파일 이름 `swr`을 `swr-ssg-cache-stale-while-revalidate`로 바꾸었더니 에러가 없어지고 정상 작동하였다  
 
 정확한 원인(코드)은 모르겠지만 hydration 과정에서 파일명 `swr`이 `SWR`라이브러리와 충돌이 있었을 것으로 예상된다.
+
+### 해결
+파일명을 바꾸었다  
+`swr.md` -> `swr-ssg-cache-stale-while-revalidate.md`
