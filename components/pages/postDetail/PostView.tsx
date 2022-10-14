@@ -45,7 +45,7 @@ const h1 = css({
 });
 
 const wrapper = css({
-  minHeight: "calc(100vh - 4rem - 3rem)",
+  minHeight: "calc(100vh - 3rem)",
   height: "100%",
   color: "#c9d1d9",
   backgroundColor: "#0d1117",

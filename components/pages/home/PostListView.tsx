@@ -31,7 +31,7 @@ const wrapper = css({
   flexDirection: "column",
   alignItems: "center",
   height: "100%",
-  minHeight: "calc(100vh - 4rem - 3rem)",
+  minHeight: "calc(100vh - 3rem)",
   width: "100%",
   color: "#c9d1d9",
   backgroundColor: "#0d1117",

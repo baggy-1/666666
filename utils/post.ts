@@ -1,4 +1,5 @@
 import fs from "fs";
+import path from "path";
 import matter from "gray-matter";
 import { remark } from "remark";
 import remarkHtml from "remark-html";
@@ -7,13 +8,15 @@ import { MetaData } from "types/post";
 import remarkHighlightjs from "remark-highlight.js";
 import remarkGfm from "remark-gfm";
 
+const postsDirectory = path.join(process.cwd(), "_posts");
+
 const replaceExtension = (path: string, extension: string) => {
   const regExp = new RegExp(`\.${extension}$`);
   return path.replace(regExp, "");
 };
 
 const readDirPosts = () => {
-  return fs.readdirSync("_posts", { encoding: "utf-8" });
+  return fs.readdirSync(postsDirectory, { encoding: "utf-8" });
 };
 
 const getAllPostPath = () => {
@@ -31,7 +34,7 @@ const getAllPostMetaData = () => {
   const posts = readDirPosts();
 
   const postMetaData = posts.map((post) => {
-    const readPost = matter.read(`_posts/${post}`);
+    const readPost = matter.read(`${postsDirectory}/${post}`);
     const path = replaceExtension(post, "md");
 
     return {
@@ -52,7 +55,7 @@ const getAllPostMetaData = () => {
 };
 
 const getPost = (path: string) => {
-  const post = matter.read(`_posts/${path}.md`);
+  const post = matter.read(`${postsDirectory}/${path}.md`);
   const { content: postContent, data: meta } = post;
   const parseContent = remark()
     .use(remarkHtml, { sanitize: false })
