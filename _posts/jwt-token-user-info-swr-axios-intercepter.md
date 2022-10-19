@@ -5,7 +5,7 @@ date: "2022-10-19"
 description: "jwt 토큰을 axios intercepters를 이용해 유저 정보를 깔끔하게 불러와보자"
 tags:
   - swr
-- axios
+  - axios
 title: axios intercepters 사용기
 ---
 # 왜 사용하게 되었나?
