@@ -8,7 +8,7 @@ tags:
   - next.js
   - pretendard
 title: Next.js에서 제공하는 Font Optimization
-public: true
+public: false
 ---
 
 # 폰트 최적화

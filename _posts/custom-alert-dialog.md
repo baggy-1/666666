@@ -8,7 +8,7 @@ tags:
   - typescript
   - components
 title: mui를 참고하여 커스텀 Alert, Confirm 만들기
-public: true
+public: false
 ---
 # mui AlertDialog
 
