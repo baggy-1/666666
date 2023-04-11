@@ -4,6 +4,7 @@ interface MetaData {
   description: string;
   tags: string[];
   title: string;
+  public: boolean;
 }
 
 interface MetaDataPath extends MetaData {

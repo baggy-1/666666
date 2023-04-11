@@ -1,7 +1,7 @@
 import type { GetStaticProps, NextPage } from "next";
 import { SWRConfig } from "swr";
 import { MetaDataPath } from "types/post";
-import { getAllPostMetaData } from "utils/post";
+import { getPublicPostMetaData } from "utils/post";
 import PostListView from "components/pages/home/PostListView";
 
 interface PageProps {
@@ -19,7 +19,7 @@ const Home: NextPage = () => {
 };
 
 export const getStaticProps: GetStaticProps = () => {
-  const allPostMetaData = getAllPostMetaData();
+  const allPostMetaData = getPublicPostMetaData();
 
   return {
     props: {

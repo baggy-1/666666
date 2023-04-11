@@ -10,6 +10,7 @@ tags:
   - hydration
   - error
 title: Hydration failed Error
+public: true
 ---
 
 # 포스팅하면서 생긴 Error

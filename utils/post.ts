@@ -30,7 +30,7 @@ const getAllPostPath = () => {
   return allPostPath;
 };
 
-const getAllPostMetaData = () => {
+const getPublicPostMetaData = () => {
   const posts = readDirPosts();
 
   const postMetaData = posts.map((post) => {
@@ -43,7 +43,11 @@ const getAllPostMetaData = () => {
     };
   });
 
-  const sortPostMetaData = postMetaData
+  const publicPostMetaData = postMetaData.filter(
+    ({ public: _public }) => _public
+  );
+
+  const sortPostMetaData = publicPostMetaData
     .slice()
     .sort(({ date: a }, { date: b }) => {
       if (a < b) return 1;
@@ -71,4 +75,4 @@ const getPost = (path: string) => {
   };
 };
 
-export { getAllPostMetaData, getPost, getAllPostPath };
+export { getPublicPostMetaData, getPost, getAllPostPath };

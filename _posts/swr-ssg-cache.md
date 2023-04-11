@@ -7,6 +7,7 @@ tags:
   - swr
   - next.js
 title: SWR 사용기
+public: true
 ---
 
 # SWR

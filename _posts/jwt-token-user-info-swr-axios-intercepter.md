@@ -7,6 +7,7 @@ tags:
   - swr
   - axios
 title: axios intercepters 사용기
+public: true
 ---
 # 왜 사용하게 되었나?
 > access token으로 유저 정보를 가지고 오는데, access token이 만료되면 refresh token을 사용하여 access token을 응답 받고 유저 정보를 재호출 해야 했다.  
