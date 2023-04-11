@@ -7,7 +7,7 @@ const Nav = () => {
       <div css={wrapper}>
         <p css={p}>
           <Link href={"/"}>
-            <a>{`<Blog />`}</a>
+            <a>{`<666666 />`}</a>
           </Link>
         </p>
       </div>
