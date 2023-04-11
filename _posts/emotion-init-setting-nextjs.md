@@ -8,6 +8,7 @@ tags:
   - next.js
   - typescript
 title: emotion 초기 설정 (with next.js, typescript)
+public: true
 ---
 
 # 😵 emotion 초기 설정
